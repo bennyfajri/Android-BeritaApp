@@ -33,7 +33,11 @@
     <fragment
         android:id="@+id/articleFragment"
         android:name="com.example.beritaapp.ui.fragments.ArticleFragment"
-        android:label="ArticleFragment" />
+        android:label="ArticleFragment" >
+        <argument
+            android:name="article"
+            app:argType="com.example.beritaapp.models.Article" />
+    </fragment>
 
     <fragment
         android:id="@+id/userFragment"
