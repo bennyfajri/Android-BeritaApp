@@ -1,4 +1,4 @@
-package com.example.beritaapp
+package com.example.beritaapp.models
 
 data class Source(
     val id: Any,

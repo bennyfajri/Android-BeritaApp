@@ -1,6 +1,6 @@
 package com.example.beritaapp.api
 
-import com.example.beritaapp.NewsResponse
+import com.example.beritaapp.models.NewsResponse
 import com.example.beritaapp.util.Constants.Companion.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET

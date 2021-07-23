@@ -1,4 +1,4 @@
-package com.example.beritaapp
+package com.example.beritaapp.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
