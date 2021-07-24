@@ -33,22 +33,10 @@
     <fragment
         android:id="@+id/articleFragment"
         android:name="com.example.beritaapp.ui.fragments.ArticleFragment"
-        android:label="ArticleFragment" >
-        <argument
-            android:name="article"
-            app:argType="com.example.beritaapp.models.Article" />
-    </fragment>
+        android:label="ArticleFragment" />
 
     <fragment
         android:id="@+id/userFragment"
         android:name="com.example.beritaapp.ui.fragments.UserFragment"
-        android:label="UserFragment">
-        <action
-            android:id="@+id/action_userFragment_to_articleFragment"
-            app:destination="@id/articleFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
+        android:label="UserFragment"/>
 </navigation>
