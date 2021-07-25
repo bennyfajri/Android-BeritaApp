@@ -52,14 +52,17 @@ class Newsadapter(context: Context) : RecyclerView.Adapter<Newsadapter.ArticleVi
             tvSource.text = article.source?.name
             tvTitle.text = article.title
             setOnClickListener{
-                onItemClickListener?.let { it(article) }
+//                onItemClickListener?.let { it(article) }
                 val intent = Intent(context, DetailActivity::class.java)
-                intent.putExtra("url", article.url)
-                intent.putExtra("title", article.title)
-                intent.putExtra("published", article.publishedAt)
-                intent.putExtra("description", article.description)
-                intent.putExtra("content", article.content)
+                intent.putExtra("id", article.id)
                 intent.putExtra("author", article.author)
+                intent.putExtra("content", article.content)
+                intent.putExtra("description", article.description)
+                intent.putExtra("published", article.publishedAt)
+                intent.putExtra("title", article.title)
+                intent.putExtra("url", article.url)
+                intent.putExtra("image", article.urlToImage)
+                intent.putExtra("name", article.source?.name)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 context?.startActivity(intent)
             }

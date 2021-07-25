@@ -3,6 +3,7 @@ package com.example.beritaapp.ui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.beritaapp.models.Article
 import com.example.beritaapp.models.NewsResponse
 import com.example.beritaapp.repository.NewsRepository
 import com.example.beritaapp.util.Resource
@@ -55,6 +56,16 @@ class NewsViewModel(
             }
         }
         return Resource.Error(response.message())
+    }
+
+    fun saveArticle(article: Article) = viewModelScope.launch {
+        newsRepository.upsert(article)
+    }
+
+    fun getSavedNews() = newsRepository.getSavedNews()
+
+    fun deleteArticle(article: Article) = viewModelScope.launch {
+        newsRepository.deleteArticle(article)
     }
 
 }

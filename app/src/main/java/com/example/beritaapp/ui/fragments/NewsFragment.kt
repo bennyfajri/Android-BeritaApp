@@ -1,6 +1,7 @@
 package com.example.beritaapp.ui.fragments
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +37,14 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         viewModel = (activity as MainActivity).viewModel
         setupRecyclerView()
         showCardView()
+
+        slNews.setOnRefreshListener {
+            Handler().postDelayed(Runnable {
+                slNews.isRefreshing = false
+                setupRecyclerView()
+                showCardView()
+            }, 500)
+        }
 
         var job: Job? = null
         etSearch.addTextChangedListener { editable ->
