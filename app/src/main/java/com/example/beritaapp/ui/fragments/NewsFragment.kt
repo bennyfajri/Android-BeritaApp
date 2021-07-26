@@ -77,8 +77,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let{ message ->
-                        Log.e(TAG, "An error occured: $message")
-                        Toast.makeText(context, "Connection error", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, "An error occured: $message", Toast.LENGTH_LONG).show()
                     }
                 }
                 is Resource.Loading -> {
@@ -90,14 +89,13 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
 
     override fun onResume() {
         super.onResume()
-        setupRecyclerView()
+//        setupRecyclerView()
         showCardView()
     }
 
     private fun hideProgressBar(){
         paginationProgressBar.visibility = View.INVISIBLE
         isLoading = false
-
     }
 
     private fun showProgressBar(){

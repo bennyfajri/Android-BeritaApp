@@ -3,6 +3,8 @@ package com.example.beritaapp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.beritaapp.R
@@ -32,6 +34,9 @@ class DetailActivity : AppCompatActivity() {
         i = intent
         getIntentValue()
         setViewValue()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = ""
 
         viewModel = ViewModelProvider(this)[AddNewsViewModel::class.java]
         val source = Source(null, name)
@@ -65,5 +70,12 @@ class DetailActivity : AppCompatActivity() {
         author = i.getStringExtra("author").toString()
         image = i.getStringExtra("image").toString()
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == android.R.id.home){
+            finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
