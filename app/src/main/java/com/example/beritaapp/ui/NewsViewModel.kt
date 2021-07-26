@@ -60,9 +60,8 @@ class NewsViewModel(
         return Resource.Error(response.message())
     }
 
-    fun saveArticle(context: Context, article: Article){
-        val localDataSource = LocalDataSource(context)
-        localDataSource.insertNews(article)
+    fun saveArticle(article: Article) = viewModelScope.launch{
+        newsRepository.insertData(article)
     }
 
     fun getSavedNews() = newsRepository.getSavedNews()

@@ -8,20 +8,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 
-class NewsRepository(val db: ArticleDatabase){
+class NewsRepository(
+    val db: ArticleDatabase
+) {
 
     suspend fun getBreakingNews(countryCode: String, pageNumber: Int) =
         RetrofitInstance.api.getBreakingNews(countryCode, pageNumber)
 
     suspend fun searchNews(searchQuery: String, pageNumber: Int) =
-         RetrofitInstance.api.searchForNews(searchQuery, pageNumber)
+        RetrofitInstance.api.searchForNews(searchQuery, pageNumber)
 
-    fun insertData(article: Article){
-
-    }
+    suspend fun insertData(article: Article) = db.getArticleDao().upsert(article)
 
     fun getSavedNews() = db.getArticleDao().getAllArticles()
 
-    suspend fun  deleteArticle(article: Article) = db.getArticleDao().deleteArticle(article)
+    suspend fun deleteArticle(article: Article) = db.getArticleDao().deleteArticle(article)
 
 }

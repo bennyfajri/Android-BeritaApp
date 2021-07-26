@@ -4,19 +4,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beritaapp.R
 import com.example.beritaapp.adapters.Newsadapter
-import com.example.beritaapp.models.Article
-import com.example.beritaapp.ui.AddNewsViewModel
 import com.example.beritaapp.ui.MainActivity
 import com.example.beritaapp.ui.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_bookmarks.*
-import kotlinx.android.synthetic.main.fragment_news.*
 
 class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
 
@@ -46,7 +42,7 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
                 viewModel.deleteArticle(article)
                 Snackbar.make(view, "Artikel berhasil dihapus", Snackbar.LENGTH_LONG).apply {
                     setAction("Batal"){
-                        viewModel.saveArticle(context, article)
+                        viewModel.saveArticle(article)
                     }
                     show()
                 }
