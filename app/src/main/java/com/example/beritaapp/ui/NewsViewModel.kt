@@ -1,9 +1,11 @@
 package com.example.beritaapp.ui
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.beritaapp.models.Article
+import com.example.beritaapp.models.LocalDataSource
 import com.example.beritaapp.models.NewsResponse
 import com.example.beritaapp.repository.NewsRepository
 import com.example.beritaapp.util.Resource
@@ -58,8 +60,9 @@ class NewsViewModel(
         return Resource.Error(response.message())
     }
 
-    fun saveArticle(article: Article) = viewModelScope.launch {
-        newsRepository.upsert(article)
+    fun saveArticle(context: Context, article: Article){
+        val localDataSource = LocalDataSource(context)
+        localDataSource.insertNews(article)
     }
 
     fun getSavedNews() = newsRepository.getSavedNews()
