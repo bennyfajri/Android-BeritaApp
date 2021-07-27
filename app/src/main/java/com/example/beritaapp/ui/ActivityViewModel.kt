@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AddNewsViewModel : ViewModel() {
+class ActivityViewModel : ViewModel() {
     fun saveArticle(context: Context, article: Article){
         val localDataSource = LocalDataSource(context)
         localDataSource.insertNews(article)

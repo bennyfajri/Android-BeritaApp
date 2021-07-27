@@ -3,7 +3,6 @@ package com.example.beritaapp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -25,7 +24,7 @@ class DetailActivity : AppCompatActivity() {
     lateinit var name: String
     lateinit var image: String
     var id: Int = 0
-    lateinit var viewModel: AddNewsViewModel
+    lateinit var viewModel: ActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +37,7 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = ""
 
-        viewModel = ViewModelProvider(this)[AddNewsViewModel::class.java]
+        viewModel = ViewModelProvider(this)[ActivityViewModel::class.java]
         val source = Source(null, name)
         val article = Article(id, author, content, descr, published, source, title, url, image)
         fab.setOnClickListener {

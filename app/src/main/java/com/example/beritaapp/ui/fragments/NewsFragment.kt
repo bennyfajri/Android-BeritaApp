@@ -1,5 +1,6 @@
 package com.example.beritaapp.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -15,6 +16,7 @@ import com.example.beritaapp.R
 import com.example.beritaapp.adapters.Newsadapter
 import com.example.beritaapp.ui.MainActivity
 import com.example.beritaapp.ui.NewsViewModel
+import com.example.beritaapp.ui.SearchActivity
 import com.example.beritaapp.util.Constants.Companion.QUERY_PAGE_SIZE
 import com.example.beritaapp.util.Constants.Companion.SEARCH_NEWS_TIME_DELAY
 import com.example.beritaapp.util.Resource
@@ -43,6 +45,10 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
                 setupRecyclerView()
                 showCardView()
             }, 500)
+        }
+        etSearch.setOnClickListener {
+            val intent = Intent(context, SearchActivity::class.java)
+            startActivity(intent)
         }
 
         var job: Job? = null
