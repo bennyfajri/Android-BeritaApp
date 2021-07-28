@@ -10,9 +10,7 @@
         android:id="@+id/cvItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:outlineSpotShadowColor="@color/black"
         app:cardCornerRadius="12dp"
-        android:outlineAmbientShadowColor="#808080"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

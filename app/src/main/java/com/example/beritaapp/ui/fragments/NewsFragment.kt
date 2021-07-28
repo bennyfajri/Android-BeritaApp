@@ -3,11 +3,9 @@ package com.example.beritaapp.ui.fragments
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
-import android.widget.AbsListView
-import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
+import android.view.ViewGroup
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,13 +16,9 @@ import com.example.beritaapp.ui.MainActivity
 import com.example.beritaapp.ui.NewsViewModel
 import com.example.beritaapp.ui.SearchActivity
 import com.example.beritaapp.util.Constants.Companion.QUERY_PAGE_SIZE
-import com.example.beritaapp.util.Constants.Companion.SEARCH_NEWS_TIME_DELAY
 import com.example.beritaapp.util.Resource
 import kotlinx.android.synthetic.main.fragment_news.*
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+
 
 class NewsFragment : Fragment(R.layout.fragment_news) {
 
@@ -46,25 +40,33 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
                 showCardView()
             }, 500)
         }
+//        svSearch.setOnClickListener {
+//
+//        }
+
         etSearch.setOnClickListener {
             val intent = Intent(context, SearchActivity::class.java)
             startActivity(intent)
         }
 
-        var job: Job? = null
-        etSearch.addTextChangedListener { editable ->
-            job?.cancel()
-            job = MainScope().launch {
-                delay(SEARCH_NEWS_TIME_DELAY)
-                editable?.let {
-                    if(editable.toString().isNotEmpty()){
-                        viewModel.getSearchNews(editable.toString())
-                    }
-                }
-            }
-        }
+
+
+//        var job: Job? = null
+//        etSearch.addTextChangedListener { editable ->
+//            job?.cancel()
+//            job = MainScope().launch {
+//                delay(SEARCH_NEWS_TIME_DELAY)
+//                editable?.let {
+//                    if(editable.toString().isNotEmpty()){
+//                        viewModel.getSearchNews(editable.toString())
+//                    }
+//                }
+//            }
+//        }
 
     }
+
+
 
     private fun showCardView() {
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
