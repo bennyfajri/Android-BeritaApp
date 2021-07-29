@@ -23,7 +23,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
                 android:layout_toStartOf="@id/ivArticleImage"
-                android:padding="16dp">
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp">
 
                 <TextView
                     android:id="@+id/tvTitle"
@@ -62,7 +63,8 @@
                 android:layout_alignParentEnd="true"
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@color/grey"/>
 
         </RelativeLayout>
 

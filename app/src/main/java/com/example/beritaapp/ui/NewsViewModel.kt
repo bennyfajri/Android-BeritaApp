@@ -8,11 +8,9 @@ import android.net.NetworkCapabilities.*
 import android.os.Build
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.beritaapp.NewsApplication
 import com.example.beritaapp.models.Article
-import com.example.beritaapp.models.LocalDataSource
 import com.example.beritaapp.models.NewsResponse
 import com.example.beritaapp.repository.NewsRepository
 import com.example.beritaapp.util.Resource

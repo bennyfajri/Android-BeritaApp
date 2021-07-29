@@ -8,10 +8,14 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beritaapp.R
+import com.example.beritaapp.adapters.CategoryAdapter
 import com.example.beritaapp.adapters.Newsadapter
+import com.example.beritaapp.models.Category
+import com.example.beritaapp.models.CategoryData
 import com.example.beritaapp.ui.MainActivity
 import com.example.beritaapp.ui.NewsViewModel
 import com.example.beritaapp.ui.SearchActivity
@@ -24,6 +28,8 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
 
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: Newsadapter
+    private var list: ArrayList<Category> = arrayListOf()
+
 
     val TAG = "NewsFragment"
 
@@ -33,6 +39,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         setupRecyclerView()
         showCardView()
 
+
         slNews.setOnRefreshListener {
             Handler().postDelayed(Runnable {
                 slNews.isRefreshing = false
@@ -40,9 +47,6 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
                 showCardView()
             }, 500)
         }
-//        svSearch.setOnClickListener {
-//
-//        }
 
         etSearch.setOnClickListener {
             val intent = Intent(context, SearchActivity::class.java)
@@ -50,22 +54,19 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         }
 
 
+        rvKategori.setHasFixedSize(true)
+        list.addAll(CategoryData.listData)
+        showCategory()
 
-//        var job: Job? = null
-//        etSearch.addTextChangedListener { editable ->
-//            job?.cancel()
-//            job = MainScope().launch {
-//                delay(SEARCH_NEWS_TIME_DELAY)
-//                editable?.let {
-//                    if(editable.toString().isNotEmpty()){
-//                        viewModel.getSearchNews(editable.toString())
-//                    }
-//                }
-//            }
-//        }
 
     }
 
+    private fun showCategory() {
+        rvKategori.layoutManager = GridLayoutManager(context, 3)
+        val adapter = CategoryAdapter(requireContext(), list)
+        rvKategori.adapter = adapter
+
+    }
 
 
     private fun showCardView() {

@@ -1,8 +1,9 @@
-package com.example.beritaapp.models
+package com.example.beritaapp.repository
 
 import android.content.Context
 import com.example.beritaapp.api.RetrofitInstance
 import com.example.beritaapp.db.ArticleDatabase
+import com.example.beritaapp.models.Article
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

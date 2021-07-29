@@ -1,25 +1,16 @@
 package com.example.beritaapp.ui
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.beritaapp.NewsApplication
 import com.example.beritaapp.db.ArticleDatabase
 import com.example.beritaapp.models.Article
-import com.example.beritaapp.models.LocalDataSource
+import com.example.beritaapp.repository.LocalDataSource
 import com.example.beritaapp.models.NewsResponse
-import com.example.beritaapp.repository.NewsRepository
 import com.example.beritaapp.util.Resource
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import java.io.IOException
 
 class ActivityViewModel: ViewModel() {
 
