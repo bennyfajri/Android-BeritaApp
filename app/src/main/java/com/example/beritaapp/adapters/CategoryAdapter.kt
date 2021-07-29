@@ -1,6 +1,7 @@
 package com.example.beritaapp.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.beritaapp.R
 import com.example.beritaapp.models.Category
+import com.example.beritaapp.ui.CategoryActivity
 import kotlinx.android.synthetic.main.item_category.view.*
 
 class CategoryAdapter(
@@ -39,9 +41,12 @@ val arrayList: ArrayList<Category>
             .apply(RequestOptions().override(55,55))
             .into(holder.img)
 
-        holder.tvName.text = category.name
+        holder.tvName.text = category.nama
         holder.layout.setOnClickListener {
-
+            val intent = Intent(context, CategoryActivity::class.java)
+            intent.putExtra("namaID", category.nama)
+            intent.putExtra("nameEN", category.name)
+            context.startActivity(intent)
         }
     }
 

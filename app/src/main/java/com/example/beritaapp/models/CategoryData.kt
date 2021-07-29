@@ -3,7 +3,7 @@ package com.example.beritaapp.models
 import com.example.beritaapp.R
 
 object CategoryData {
-    private val name = arrayOf("Bisnis", "Hiburan",
+    private val nama = arrayOf("Bisnis", "Hiburan",
         "Kesehatan", "Sains", "Olahraga", "Teknologi"
     )
 
@@ -12,9 +12,9 @@ object CategoryData {
         R.drawable.science, R.drawable.sports, R.drawable.technology
     )
 
-    private val color = arrayOf(
-        "#0000fc", "#b00000", "#00d93d",
-        "#6c00d9", "#d9d900", "#00add9"
+    private val name = arrayOf(
+        "business", "entertainment", "health",
+        "science", "sports", "technology"
     )
 
     val listData: ArrayList<Category>
@@ -24,7 +24,7 @@ object CategoryData {
             val category = Category()
             category.name = name[position]
             category.icon = icon[position]
-            category.color = color[position]
+            category.nama = nama[position]
             list.add(category)
         }
         return list

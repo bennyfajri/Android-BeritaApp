@@ -14,6 +14,10 @@ import retrofit2.Response
 
 class ActivityViewModel: ViewModel() {
 
+    val breakingNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
+    var breakingNewsPage = 1
+    var breakingNewsResponse: NewsResponse? = null
+
     val searchNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var searchNewsPage = 1
     var searchNewsResponse: NewsResponse? = null
@@ -21,6 +25,25 @@ class ActivityViewModel: ViewModel() {
     fun saveArticle(context: Context, article: Article){
         val localDataSource = LocalDataSource(context)
         localDataSource.insertNews(article)
+    }
+
+    private fun handleBreakingNewsResponse(
+        response: Response<NewsResponse>
+    ): Resource<NewsResponse> {
+        if (response.isSuccessful) {
+            response.body()?.let { resultResponse ->
+                breakingNewsPage++
+                if (breakingNewsResponse == null) {
+                    breakingNewsResponse = resultResponse
+                } else {
+                    val oldArticle = breakingNewsResponse?.articles
+                    val newArticle = resultResponse.articles
+                    oldArticle?.addAll(newArticle)
+                }
+                return Resource.Success(breakingNewsResponse ?: resultResponse)
+            }
+        }
+        return Resource.Error(response.message())
     }
 
     private fun handleSearchNewsResponse(
@@ -42,14 +65,22 @@ class ActivityViewModel: ViewModel() {
         return Resource.Error(response.message())
     }
 
+    fun getBreakingNews(context: Context, countryCode: String, category: String) = viewModelScope.launch {
+        breakingNews.postValue(Resource.Loading())
+        val response = LocalDataSource(context).getBreakingNews(countryCode, breakingNewsPage, category)
+        breakingNews.postValue(handleBreakingNewsResponse((response)))
+//        safeBreakingNewsCall(countryCode)
+    }
+
     fun getSearchNews(searchQuery: String, context: Context) = viewModelScope.launch {
         val articleDatabase = ArticleDatabase.createDatabase(context)
         searchNews.postValue(Resource.Loading())
         val response = LocalDataSource(context).searchNews(searchQuery, searchNewsPage)
         searchNews.postValue(handleSearchNewsResponse(response))
 //        safeSearchNewsCall(searchQuery)
-
     }
+
+
 
 //    private suspend fun safeSearchNewsCall(searchQuery: String) {
 //        searchNews.postValue(Resource.Loading())

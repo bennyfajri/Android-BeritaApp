@@ -139,7 +139,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
             val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning
                     && isTotalMoreThanVisible && isScrolling
             if(shouldPaginate){
-                viewModel.getBreakingNews("id")
+                viewModel.getBreakingNews("id", "")
                 isScrolling = false
 
             }

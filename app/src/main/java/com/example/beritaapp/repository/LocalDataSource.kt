@@ -20,4 +20,7 @@ class LocalDataSource(context: Context) {
     suspend fun searchNews(searchQuery: String, pageNumber: Int) =
         RetrofitInstance.api.searchForNews(searchQuery, pageNumber)
 
+    suspend fun getBreakingNews(countryCode: String, pageNumber: Int, category: String) =
+        RetrofitInstance.api.getBreakingNews(countryCode, pageNumber,category)
+
 }

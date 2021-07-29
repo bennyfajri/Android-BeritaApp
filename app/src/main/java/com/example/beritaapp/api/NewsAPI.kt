@@ -14,6 +14,8 @@ interface NewsAPI {
         contryCode: String = "id",
         @Query("page")
         pageNumber: Int = 1,
+        @Query("category")
+        category: String,
         @Query("apiKey")
         apiKey: String = API_KEY
     ): Response<NewsResponse>
