@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BeritaApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.CategoryActivity"></activity>
+        <activity android:name=".ui.fragments.RegisterActivity"></activity>
+        <activity android:name=".ui.LoginActivity" />
+        <activity android:name=".ui.CategoryActivity" />
         <activity android:name=".ui.SearchActivity" />
         <activity android:name=".ui.DetailActivity" />
         <activity android:name=".ui.MainActivity">
