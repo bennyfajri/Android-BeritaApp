@@ -1,9 +1,12 @@
 package com.example.beritaapp.ui
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.beritaapp.R
@@ -23,7 +26,9 @@ class DetailActivity : AppCompatActivity() {
     lateinit var author: String
     lateinit var name: String
     lateinit var image: String
+    lateinit var article: Article
     var id: Int = 0
+    var isSaved = false
     lateinit var viewModel: ActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,18 +38,57 @@ class DetailActivity : AppCompatActivity() {
         i = intent
         getIntentValue()
         setViewValue()
+        bookmarked()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = ""
 
         viewModel = ViewModelProvider(this)[ActivityViewModel::class.java]
         val source = Source(null, name)
-        val article = Article(id, author, content, descr, published, source, title, url, image)
+        article = Article(id, author, content, descr, published, source, title, url, image)
         fab.setOnClickListener {
-            viewModel.saveArticle(applicationContext,article)
-            Snackbar.make(constraintDetail, "Berita berhasil disimpan", Snackbar.LENGTH_LONG).show()
+            if (isSaved == false) {
+                viewModel.saveArticle(applicationContext, article)
+                Snackbar.make(constraintDetail, "Berita berhasil disimpan", Snackbar.LENGTH_LONG)
+                    .show()
+                fab.imageTintList =
+                    ColorStateList.valueOf(ContextCompat.getColor(this@DetailActivity, R.color.red))
+                isSaved = true
+                if (id == 0) {
+                    fab.isClickable = false
+                }
+
+            } else {
+                val delete = viewModel.deleteArticle(applicationContext, article)
+                if (delete.isCompleted) {
+                    Snackbar.make(constraintDetail, "Berita berhasil dihapus", Snackbar.LENGTH_LONG)
+                        .show()
+                    fab.imageTintList = ColorStateList.valueOf(
+                        ContextCompat.getColor(
+                            this@DetailActivity,
+                            R.color.white
+                        )
+                    )
+                    isSaved = false
+
+                }
+            }
+
         }
 
+        btnTest.setOnClickListener {
+            Toast.makeText(applicationContext, "$id", Toast.LENGTH_LONG).show()
+        }
+
+
+    }
+
+    private fun bookmarked() {
+        if (id != 0) {
+            isSaved = true
+            fab.imageTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(this@DetailActivity, R.color.red))
+        }
     }
 
     private fun setViewValue() {
@@ -59,7 +103,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun getIntentValue() {
-        id = i.getIntExtra("id",0)
+        id = i.getIntExtra("id", 0)
         name = i.getStringExtra("name").toString()
         title = i.getStringExtra("title").toString()
         url = i.getStringExtra("url").toString()
@@ -72,7 +116,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == android.R.id.home){
+        if (item.itemId == android.R.id.home) {
             finish()
         }
         return super.onOptionsItemSelected(item)

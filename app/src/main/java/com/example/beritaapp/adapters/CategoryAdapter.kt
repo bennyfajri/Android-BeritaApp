@@ -42,7 +42,7 @@ val arrayList: ArrayList<Category>
             .into(holder.img)
 
         holder.tvName.text = category.nama
-        holder.layout.setOnClickListener {
+        holder.img.setOnClickListener {
             val intent = Intent(context, CategoryActivity::class.java)
             intent.putExtra("namaID", category.nama)
             intent.putExtra("nameEN", category.name)

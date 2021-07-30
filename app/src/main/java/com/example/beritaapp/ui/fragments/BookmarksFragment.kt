@@ -52,12 +52,20 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
         ItemTouchHelper(itemTouchHelperCallback).apply {
             attachToRecyclerView(rvSavedNews)
         }
+        getSavedNews()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getSavedNews()
+    }
+
+    fun getSavedNews(){
         viewModel.getSavedNews().observe(viewLifecycleOwner, Observer { articles ->
             newsAdapter.differ.submitList(articles)
         })
     }
-
 
     private fun setupRecyclerView(){
         newsAdapter = Newsadapter(requireContext())

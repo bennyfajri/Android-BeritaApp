@@ -26,6 +26,15 @@ class ActivityViewModel: ViewModel() {
         val localDataSource = LocalDataSource(context)
         localDataSource.insertNews(article)
     }
+    fun deleteArticle(context: Context, article: Article) = viewModelScope.launch {
+        val localDataSource = LocalDataSource(context)
+        localDataSource.deleteArticle(article)
+    }
+
+    fun getSavedNews(context: Context) {
+        val localDataSource = LocalDataSource(context)
+        localDataSource.getSavedNews()
+    }
 
     private fun handleBreakingNewsResponse(
         response: Response<NewsResponse>

@@ -23,4 +23,16 @@ class LocalDataSource(context: Context) {
     suspend fun getBreakingNews(countryCode: String, pageNumber: Int, category: String) =
         RetrofitInstance.api.getBreakingNews(countryCode, pageNumber,category)
 
+    suspend fun deleteArticle(article: Article) {
+        CoroutineScope(Dispatchers.Main).launch {
+            articleDao.deleteArticle(article)
+        }
+    }
+
+    fun getSavedNews(){
+        CoroutineScope(Dispatchers.Main).launch {
+            articleDao.getAllArticles()
+        }
+    }
+
 }
