@@ -18,13 +18,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Login"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_regular"/>
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Register"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_regular"/>
 
     </LinearLayout>
 

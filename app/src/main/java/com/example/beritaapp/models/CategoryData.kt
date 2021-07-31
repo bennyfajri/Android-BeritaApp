@@ -2,19 +2,34 @@ package com.example.beritaapp.models
 
 import com.example.beritaapp.R
 
+
 object CategoryData {
-    private val nama = arrayOf("Bisnis", "Hiburan",
-        "Kesehatan", "Sains", "Olahraga", "Teknologi"
+    private val nama = arrayOf(
+        "Bisnis", "Hiburan", "Kesehatan",
+        "Sains", "Olahraga", "Teknologi",
+        "Gaya Hidup", "Kecantikan", "Liburan",
+        "Kuliner"
     )
 
     private val icon = intArrayOf(
-       R.drawable.business, R.drawable.entertainment, R.drawable.healhh,
-        R.drawable.science, R.drawable.sports, R.drawable.technology
+       R.drawable.business, R.drawable.movie, R.drawable.health,
+        R.drawable.science, R.drawable.sport, R.drawable.techno,
+        R.drawable.style,R.drawable.beauty,R.drawable.travel,
+        R.drawable.culinary,
     )
 
     private val name = arrayOf(
         "business", "entertainment", "health",
-        "science", "sports", "technology"
+        "science", "sports", "technology",
+        "lifestyle", "beauty", "travelling",
+        "food"
+    )
+
+    private val color = intArrayOf(
+        R.color.ltblue, R.color.blue_d, R.color.blue_l,
+        R.color.pinky,R.color.oren,R.color.kuning,
+        R.color.hijau,R.color.tosca,R.color.biru_tua,
+        R.color.abu
     )
 
     val listData: ArrayList<Category>
@@ -25,9 +40,15 @@ object CategoryData {
             category.name = name[position]
             category.icon = icon[position]
             category.nama = nama[position]
+            category.color = color[position]
             list.add(category)
         }
         return list
     }
+
+    val adsImage = intArrayOf(
+        R.drawable.banner2,R.drawable.banner1
+    )
+
 
 }

@@ -86,6 +86,9 @@ dependencies {
     //circle image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    //carousel view
+    implementation 'com.synnapps:carouselview:0.1.5'
+
 
 
 

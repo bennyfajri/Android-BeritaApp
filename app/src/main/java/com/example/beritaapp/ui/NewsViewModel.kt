@@ -41,7 +41,7 @@ class NewsViewModel(
 //        breakingNews.postValue(Resource.Loading())
 //        val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage)
 //        breakingNews.postValue(handleBreakingNewsResponse((response)))
-        safeBreakingNewsCall(countryCode)
+        safeBreakingNewsCall(countryCode,category)
     }
 
     fun getSearchNews(searchQuery: String) = viewModelScope.launch {
@@ -117,11 +117,11 @@ class NewsViewModel(
         }
     }
 
-    private suspend fun safeBreakingNewsCall(countryCode: String) {
+    private suspend fun safeBreakingNewsCall(countryCode: String, category : String) {
         breakingNews.postValue(Resource.Loading())
         try {
             if (hasInternetConnection()) {
-                val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage, "")
+                val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage, category)
                 breakingNews.postValue(handleBreakingNewsResponse((response)))
             } else {
                 breakingNews.postValue(Resource.Error("No internet connection"))

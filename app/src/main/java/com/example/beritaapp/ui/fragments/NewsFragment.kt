@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beritaapp.R
 import com.example.beritaapp.adapters.CategoryAdapter
+import com.example.beritaapp.adapters.NewsHorizontalAdapter
 import com.example.beritaapp.adapters.Newsadapter
 import com.example.beritaapp.models.Category
 import com.example.beritaapp.models.CategoryData
@@ -21,13 +22,14 @@ import com.example.beritaapp.ui.NewsViewModel
 import com.example.beritaapp.ui.SearchActivity
 import com.example.beritaapp.util.Constants.Companion.QUERY_PAGE_SIZE
 import com.example.beritaapp.util.Resource
+import com.synnapps.carouselview.ImageListener
 import kotlinx.android.synthetic.main.fragment_news.*
 
 
 class NewsFragment : Fragment(R.layout.fragment_news) {
 
     lateinit var viewModel: NewsViewModel
-    lateinit var newsAdapter: Newsadapter
+    lateinit var newsAdapter: NewsHorizontalAdapter
     private var list: ArrayList<Category> = arrayListOf()
 
 
@@ -57,12 +59,15 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         rvKategori.setHasFixedSize(true)
         list.addAll(CategoryData.listData)
         showCategory()
+        radioBisnis.setOnClickListener {
+            viewModel.getBreakingNews("id", "business")
+        }
 
 
     }
 
     private fun showCategory() {
-        rvKategori.layoutManager = GridLayoutManager(context, 3)
+        rvKategori.layoutManager = GridLayoutManager(context, 5)
         val adapter = CategoryAdapter(requireContext(), list)
         rvKategori.adapter = adapter
 
@@ -94,6 +99,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
                 }
             }
         })
+//        viewModel.getBreakingNews("id", "")
     }
 
     override fun onResume() {
@@ -147,12 +153,21 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
     }
 
     private fun setupRecyclerView(){
-        newsAdapter = Newsadapter(requireContext())
+        newsAdapter = NewsHorizontalAdapter(requireContext())
         newsAdapter.notifyDataSetChanged()
         rvSearchNews?.apply {
             adapter = newsAdapter
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             addOnScrollListener(this@NewsFragment.scrollListener)
         }
     }
+
+
+//    private fun contoh(){
+//        btnbisnis.setOnClick{
+//            var kategori = "business"
+//
+//
+//        }
+//    }
 }
