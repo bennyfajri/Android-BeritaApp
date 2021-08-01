@@ -62,6 +62,21 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         radioBisnis.setOnClickListener {
             viewModel.getBreakingNews("id", "business")
         }
+        radioHiburan.setOnClickListener {
+            viewModel.getBreakingNews("id", "entertainment")
+        }
+        radioKesehatan.setOnClickListener {
+            viewModel.getBreakingNews("id", "health")
+        }
+        radioOlahraga.setOnClickListener {
+            viewModel.getBreakingNews("id", "sport")
+        }
+        radioSains.setOnClickListener {
+            viewModel.getBreakingNews("id", "science")
+        }
+        radioTekno.setOnClickListener {
+            viewModel.getBreakingNews("id", "technology")
+        }
 
 
     }
@@ -99,7 +114,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
                 }
             }
         })
-//        viewModel.getBreakingNews("id", "")
+        viewModel.getBreakingNews("id", "")
     }
 
     override fun onResume() {

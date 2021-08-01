@@ -172,6 +172,7 @@
                                android:layout_marginEnd="8dp"/>
 
                             <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/radioHiburan"
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/radio_background"
@@ -182,6 +183,7 @@
                                 android:layout_marginEnd="8dp"/>
 
                             <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/radioKesehatan"
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/radio_background"
@@ -192,6 +194,7 @@
                                 android:layout_marginEnd="8dp"/>
 
                             <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/radioSains"
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/radio_background"
@@ -202,6 +205,7 @@
                                 android:layout_marginEnd="8dp"/>
 
                             <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/radioOlahraga"
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/radio_background"
@@ -212,6 +216,7 @@
                                 android:layout_marginEnd="8dp"/>
 
                             <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/radioTekno"
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/radio_background"
