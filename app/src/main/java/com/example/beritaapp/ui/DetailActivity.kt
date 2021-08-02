@@ -76,11 +76,6 @@ class DetailActivity : AppCompatActivity() {
 
         }
 
-        btnTest.setOnClickListener {
-            Toast.makeText(applicationContext, "$id", Toast.LENGTH_LONG).show()
-        }
-
-
     }
 
     private fun bookmarked() {

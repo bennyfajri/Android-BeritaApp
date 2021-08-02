@@ -17,6 +17,7 @@ import com.example.beritaapp.adapters.NewsHorizontalAdapter
 import com.example.beritaapp.adapters.Newsadapter
 import com.example.beritaapp.models.Category
 import com.example.beritaapp.models.CategoryData
+import com.example.beritaapp.ui.CategoryActivity
 import com.example.beritaapp.ui.MainActivity
 import com.example.beritaapp.ui.NewsViewModel
 import com.example.beritaapp.ui.SearchActivity
@@ -39,14 +40,14 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).viewModel
         setupRecyclerView()
-        showCardView()
+        showCardView("")
 
 
         slNews.setOnRefreshListener {
             Handler().postDelayed(Runnable {
                 slNews.isRefreshing = false
                 setupRecyclerView()
-                showCardView()
+                showCardView("")
             }, 500)
         }
 
@@ -55,27 +56,33 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
             startActivity(intent)
         }
 
-
         rvKategori.setHasFixedSize(true)
         list.addAll(CategoryData.listData)
         showCategory()
         radioBisnis.setOnClickListener {
-            viewModel.getBreakingNews("id", "business")
+            clearData("")
+            showCardView("business")
         }
         radioHiburan.setOnClickListener {
-            viewModel.getBreakingNews("id", "entertainment")
+//            showCardView("entertaintment")
         }
         radioKesehatan.setOnClickListener {
-            viewModel.getBreakingNews("id", "health")
+//            showCardView("health")
         }
         radioOlahraga.setOnClickListener {
-            viewModel.getBreakingNews("id", "sport")
+//            showCardView("sport")
         }
         radioSains.setOnClickListener {
-            viewModel.getBreakingNews("id", "science")
+//            showCardView("science")
         }
         radioTekno.setOnClickListener {
-            viewModel.getBreakingNews("id", "technology")
+//            showCardView("technology")
+        }
+        icMore.setOnClickListener {
+            val intent = Intent(context, CategoryActivity::class.java)
+            intent.putExtra("namaID", "Terbaru")
+            intent.putExtra("nameEN", "general")
+            startActivity(intent)
         }
 
 
@@ -85,11 +92,10 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         rvKategori.layoutManager = GridLayoutManager(context, 5)
         val adapter = CategoryAdapter(requireContext(), list)
         rvKategori.adapter = adapter
-
     }
 
 
-    private fun showCardView() {
+    private fun showCardView(category: String) {
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
             when(response){
                 is Resource.Success -> {
@@ -114,13 +120,43 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
                 }
             }
         })
-        viewModel.getBreakingNews("id", "")
+        viewModel.getBreakingNews("id", category)
+
+    }
+
+    private fun clearData(category: String) {
+        viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
+            when(response){
+                is Resource.Success -> {
+                    hideProgressBar()
+                    response.data?.let { newsResponse ->
+                        newsAdapter.differ.submitList(null)
+                        val totalPages = newsResponse.totalResults / QUERY_PAGE_SIZE + 2
+                        isLastPage = viewModel.breakingNewsPage == totalPages
+                        if(isLastPage){
+                            rvSearchNews.setPadding(0,0,0,0)
+                        }
+                    }
+                }
+                is Resource.Error -> {
+                    hideProgressBar()
+                    response.message?.let{ message ->
+                        Toast.makeText(context, "An error occured: $message", Toast.LENGTH_LONG).show()
+                    }
+                }
+                is Resource.Loading -> {
+                    showProgressBar()
+                }
+            }
+        })
+        viewModel.getBreakingNews("i", category)
+
     }
 
     override fun onResume() {
         super.onResume()
 //        setupRecyclerView()
-        showCardView()
+        showCardView("")
     }
 
     private fun hideProgressBar(){
@@ -176,13 +212,4 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
             addOnScrollListener(this@NewsFragment.scrollListener)
         }
     }
-
-
-//    private fun contoh(){
-//        btnbisnis.setOnClick{
-//            var kategori = "business"
-//
-//
-//        }
-//    }
 }
