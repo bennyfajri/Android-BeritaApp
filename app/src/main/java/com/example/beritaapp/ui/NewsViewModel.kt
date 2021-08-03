@@ -41,7 +41,14 @@ class NewsViewModel(
 //        breakingNews.postValue(Resource.Loading())
 //        val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage)
 //        breakingNews.postValue(handleBreakingNewsResponse((response)))
-        safeBreakingNewsCall(countryCode)
+        safeBreakingNewsCall(countryCode,category)
+    }
+
+    fun getClearData(countryCode: String, category: String) = viewModelScope.launch {
+//        breakingNews.postValue(Resource.Loading())
+//        val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage)
+//        breakingNews.postValue(handleBreakingNewsResponse((response)))
+        safeClearDataCall(countryCode,category)
     }
 
     fun getSearchNews(searchQuery: String) = viewModelScope.launch {
@@ -49,7 +56,6 @@ class NewsViewModel(
 //        val response = newsRepository.searchNews(searchQuery, searchNewsPage)
 //        searchNews.postValue(handleSearchNewsResponse(response))
         safeSearchNewsCall(searchQuery)
-
     }
 
     private fun handleBreakingNewsResponse(
@@ -117,11 +123,11 @@ class NewsViewModel(
         }
     }
 
-    private suspend fun safeBreakingNewsCall(countryCode: String) {
+    private suspend fun safeBreakingNewsCall(countryCode: String, category : String) {
         breakingNews.postValue(Resource.Loading())
         try {
             if (hasInternetConnection()) {
-                val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage, "")
+                val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage, category)
                 breakingNews.postValue(handleBreakingNewsResponse((response)))
             } else {
                 breakingNews.postValue(Resource.Error("No internet connection"))
@@ -130,6 +136,23 @@ class NewsViewModel(
             when(t){
                 is IOException -> breakingNews.postValue(Resource.Error("Network Failure"))
                 else -> breakingNews.postValue(Resource.Error("Conversion Error"))
+            }
+        }
+    }
+
+    private suspend fun safeClearDataCall(countryCode: String, category : String) {
+        breakingNews.postValue(Resource.Loading())
+        try {
+            if (hasInternetConnection()) {
+                val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage, category)
+                breakingNews.postValue(null)
+            } else {
+                breakingNews.postValue(null)
+            }
+        } catch (t: Throwable) {
+            when(t){
+                is IOException -> breakingNews.postValue(null)
+                else -> breakingNews.postValue(null)
             }
         }
     }

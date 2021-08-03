@@ -2,12 +2,14 @@ package com.example.beritaapp.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -38,15 +40,17 @@ val arrayList: ArrayList<Category>
 
         Glide.with(holder.itemView.context)
             .load(category.icon)
-            .apply(RequestOptions().override(55,55))
+            .apply(RequestOptions().override(45,30))
             .into(holder.img)
 
         holder.tvName.text = category.nama
+        holder.img.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, category.color))
         holder.img.setOnClickListener {
             val intent = Intent(context, CategoryActivity::class.java)
             intent.putExtra("namaID", category.nama)
             intent.putExtra("nameEN", category.name)
             context.startActivity(intent)
+//            notifyItemChanged(position)
         }
     }
 
