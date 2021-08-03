@@ -60,8 +60,8 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         list.addAll(CategoryData.listData)
         showCategory()
         radioBisnis.setOnClickListener {
-            clearData("")
-            showCardView("business")
+//            clearData("")
+//            showCardView("business")
         }
         radioHiburan.setOnClickListener {
 //            showCardView("entertaintment")

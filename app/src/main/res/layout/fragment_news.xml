@@ -163,7 +163,8 @@
                            <androidx.appcompat.widget.AppCompatRadioButton
                                android:id="@+id/radioBisnis"
                                android:layout_width="100dp"
-                               android:layout_height="wrap_content"
+                               android:layout_height="40dp"
+                               android:textColor="@drawable/text_selector"
                                android:background="@drawable/radio_background"
                                android:button="@null"
                                android:text="Bisnis"
@@ -174,7 +175,8 @@
                             <androidx.appcompat.widget.AppCompatRadioButton
                                 android:id="@+id/radioHiburan"
                                 android:layout_width="100dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="40dp"
+                                android:textColor="@drawable/text_selector"
                                 android:background="@drawable/radio_background"
                                 android:button="@null"
                                 android:text="Hiburan"
@@ -185,7 +187,8 @@
                             <androidx.appcompat.widget.AppCompatRadioButton
                                 android:id="@+id/radioKesehatan"
                                 android:layout_width="100dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="40dp"
+                                android:textColor="@drawable/text_selector"
                                 android:background="@drawable/radio_background"
                                 android:button="@null"
                                 android:text="Kesehatan"
@@ -196,7 +199,8 @@
                             <androidx.appcompat.widget.AppCompatRadioButton
                                 android:id="@+id/radioSains"
                                 android:layout_width="100dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="40dp"
+                                android:textColor="@drawable/text_selector"
                                 android:background="@drawable/radio_background"
                                 android:button="@null"
                                 android:text="Sains"
@@ -207,7 +211,8 @@
                             <androidx.appcompat.widget.AppCompatRadioButton
                                 android:id="@+id/radioOlahraga"
                                 android:layout_width="100dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="40dp"
+                                android:textColor="@drawable/text_selector"
                                 android:background="@drawable/radio_background"
                                 android:button="@null"
                                 android:text="Olahraga"
@@ -218,7 +223,8 @@
                             <androidx.appcompat.widget.AppCompatRadioButton
                                 android:id="@+id/radioTekno"
                                 android:layout_width="100dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="40dp"
+                                android:textColor="@drawable/text_selector"
                                 android:background="@drawable/radio_background"
                                 android:button="@null"
                                 android:text="Tekno"

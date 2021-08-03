@@ -72,10 +72,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:hint="email"
-                app:boxCornerRadiusTopStart="16dp"
-                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusBottomEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
-                app:boxCornerRadiusBottomEnd="16dp">
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusTopStart="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etEmailRegister"
@@ -90,10 +90,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="password"
-                app:boxCornerRadiusTopStart="16dp"
-                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusBottomEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
-                app:boxCornerRadiusBottomEnd="16dp">
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusTopStart="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPasswordRegister"
@@ -112,6 +112,15 @@
                 android:text="Register"
                 app:cornerRadius="32dp"
                 app:iconTint="@color/white" />
+
+<!--            <com.google.android.gms.common.SignInButton-->
+<!--                android:id="@+id/btnRegisterGoogle"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+
+<!--                />-->
+
 
 
             <LinearLayout
