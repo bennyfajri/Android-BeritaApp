@@ -28,9 +28,12 @@ class UserFragment : Fragment(R.layout.fragment_user) {
             startActivity(intent)
 
         }
+        val user = auth.currentUser
+        tvUsername.text = user?.displayName
         btnLogout.setOnClickListener {
             auth.signOut()
             Toast.makeText(context, "successfully logout", Toast.LENGTH_LONG).show()
+            startActivity(Intent(context, LoginActivity::class.java))
         }
     }
 }
