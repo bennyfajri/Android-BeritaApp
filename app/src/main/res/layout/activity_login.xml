@@ -73,10 +73,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:hint="email"
-                app:boxCornerRadiusTopStart="16dp"
-                app:boxCornerRadiusTopEnd="16dp"
-                app:boxCornerRadiusBottomStart="16dp"
-                app:boxCornerRadiusBottomEnd="16dp">
+                app:boxCornerRadiusTopStart="32dp"
+                app:boxCornerRadiusTopEnd="32dp"
+                app:boxCornerRadiusBottomStart="32dp"
+                app:boxCornerRadiusBottomEnd="32dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etEmailLogin"
@@ -91,10 +91,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="password"
-                app:boxCornerRadiusTopStart="16dp"
-                app:boxCornerRadiusTopEnd="16dp"
-                app:boxCornerRadiusBottomStart="16dp"
-                app:boxCornerRadiusBottomEnd="16dp">
+                app:boxCornerRadiusTopStart="32dp"
+                app:boxCornerRadiusTopEnd="32dp"
+                app:boxCornerRadiusBottomStart="32dp"
+                app:boxCornerRadiusBottomEnd="32dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPasswordLogin"
@@ -122,6 +122,22 @@
                 android:text="Login"
                 app:cornerRadius="32dp"
                 app:iconTint="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Atau"
+                android:padding="8dp"
+                android:layout_gravity="center"/>
+
+            <com.shobhitpuri.custombuttons.GoogleSignInButton
+                android:id="@+id/btnLoginGoogle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"/>
+
+
 
 
             <LinearLayout

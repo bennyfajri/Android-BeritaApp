@@ -80,10 +80,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="email"
-                    app:boxCornerRadiusBottomEnd="16dp"
-                    app:boxCornerRadiusBottomStart="16dp"
-                    app:boxCornerRadiusTopEnd="16dp"
-                    app:boxCornerRadiusTopStart="16dp">
+                    app:boxCornerRadiusBottomEnd="32dp"
+                    app:boxCornerRadiusBottomStart="32dp"
+                    app:boxCornerRadiusTopEnd="32dp"
+                    app:boxCornerRadiusTopStart="32dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etEmailRegister"
@@ -98,10 +98,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:hint="password"
-                    app:boxCornerRadiusBottomEnd="16dp"
-                    app:boxCornerRadiusBottomStart="16dp"
-                    app:boxCornerRadiusTopEnd="16dp"
-                    app:boxCornerRadiusTopStart="16dp">
+                    app:boxCornerRadiusBottomEnd="32dp"
+                    app:boxCornerRadiusBottomStart="32dp"
+                    app:boxCornerRadiusTopEnd="32dp"
+                    app:boxCornerRadiusTopStart="32dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPasswordRegister"
@@ -118,7 +118,7 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="20dp"
                     android:text="Register"
-                    app:cornerRadius="4dp"
+                    app:cornerRadius="32dp"
                     app:iconTint="@color/white" />
 
                 <TextView
@@ -129,10 +129,12 @@
                     android:text="Atau"
                     android:textColor="@color/black" />
 
-                <com.google.android.gms.common.SignInButton
+                <com.shobhitpuri.custombuttons.GoogleSignInButton
                     android:id="@+id/btnRegisterGoogle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="16dp"/>
 
                 <LinearLayout
                     android:id="@+id/linearLayout2"

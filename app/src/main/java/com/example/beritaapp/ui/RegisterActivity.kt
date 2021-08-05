@@ -81,6 +81,7 @@ class RegisterActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     Toast.makeText(this@RegisterActivity, "Successfully sign in", Toast.LENGTH_LONG)
                         .show()
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {

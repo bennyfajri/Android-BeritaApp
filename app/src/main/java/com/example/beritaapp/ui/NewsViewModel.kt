@@ -33,9 +33,9 @@ class NewsViewModel(
 
     val category = ""
 
-    init {
-        getBreakingNews("id", category)
-    }
+//    init {
+//        getBreakingNews("id", category)
+//    }
 
     fun getBreakingNews(countryCode: String, category: String) = viewModelScope.launch {
 //        breakingNews.postValue(Resource.Loading())
