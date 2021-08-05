@@ -128,7 +128,8 @@
                 android:layout_height="wrap_content"
                 android:text="Atau"
                 android:padding="8dp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:textColor="@color/black"/>
 
             <com.shobhitpuri.custombuttons.GoogleSignInButton
                 android:id="@+id/btnLoginGoogle"
