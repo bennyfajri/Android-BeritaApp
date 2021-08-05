@@ -1,18 +1,13 @@
 package com.example.beritaapp.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatButton
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.appcompat.app.AppCompatActivity
 import com.example.beritaapp.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
@@ -26,7 +21,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 const val REQUEST_CODE_SIGN_IN = 0
 
@@ -115,39 +109,43 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     fun showBottonSheet() {
-        val dialog = BottomSheetDialog(this@RegisterActivity)
-        val view = layoutInflater.inflate(R.layout.bottom_sheet_register, null)
-        val btnSubmit = view.findViewById<MaterialButton>(R.id.btnAddNameRegister)
-        val nama = view.findViewById<TextInputEditText>(R.id.etUsername)
-        btnSubmit.setOnClickListener {
-            val profileUpdates = UserProfileChangeRequest.Builder()
-                .setDisplayName(nama.text.toString())
-                .build()
+        val email = etEmailRegister.text.toString()
+        val password = etPasswordRegister.text.toString()
+        if(email.isNotEmpty() && password.isNotEmpty()){
+            val dialog = BottomSheetDialog(this@RegisterActivity)
+            val view = layoutInflater.inflate(R.layout.bottom_sheet_register, null)
+            val btnSubmit = view.findViewById<MaterialButton>(R.id.btnAddNameRegister)
+            val nama = view.findViewById<TextInputEditText>(R.id.etUsername)
+            btnSubmit.setOnClickListener {
+                val profileUpdates = UserProfileChangeRequest.Builder()
+                    .setDisplayName(nama.text.toString())
+                    .build()
 
-            if (nama != null) {
-                CoroutineScope(Dispatchers.IO).launch {
-                    try {
-                        auth.currentUser?.updateProfile(profileUpdates)
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(
-                                this@RegisterActivity,
-                                "Berhasil membuat akun",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    } catch (e: Exception) {
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(this@RegisterActivity, e.message, Toast.LENGTH_SHORT)
-                                .show()
+                if (nama != null) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        try {
+                            auth.currentUser?.updateProfile(profileUpdates)
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(
+                                    this@RegisterActivity,
+                                    "Berhasil membuat akun",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } catch (e: Exception) {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(this@RegisterActivity, e.message, Toast.LENGTH_SHORT)
+                                    .show()
+                            }
                         }
                     }
+                    dialog.dismiss()
+                    finish()
                 }
-                dialog.dismiss()
-                finish()
             }
+            dialog.setContentView(view)
+            dialog.show()
         }
-        dialog.setContentView(view)
-        dialog.show()
     }
 
 
