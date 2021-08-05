@@ -24,13 +24,23 @@ class UserFragment : Fragment(R.layout.fragment_user) {
 
         auth = FirebaseAuth.getInstance()
         if(auth.currentUser == null){
-            val intent = Intent(context, LoginActivity::class.java)
-            startActivity(intent)
-
+           intent()
         }
         btnLogout.setOnClickListener {
             auth.signOut()
             Toast.makeText(context, "successfully logout", Toast.LENGTH_LONG).show()
+            intent()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val user = auth.currentUser
+        tvUsername.text = user?.displayName
+    }
+
+    fun intent(){
+        val intent = Intent(context, LoginActivity::class.java)
+        startActivity(intent)
     }
 }
