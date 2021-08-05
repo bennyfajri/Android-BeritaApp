@@ -26,13 +26,17 @@ class UserFragment : Fragment(R.layout.fragment_user) {
         if(auth.currentUser == null){
            intent()
         }
-        val user = auth.currentUser
-        tvUsername.text = user?.displayName
         btnLogout.setOnClickListener {
             auth.signOut()
             Toast.makeText(context, "successfully logout", Toast.LENGTH_LONG).show()
             intent()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val user = auth.currentUser
+        tvUsername.text = user?.displayName
     }
 
     fun intent(){
