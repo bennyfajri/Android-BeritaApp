@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.beritaapp.R
 import com.example.beritaapp.ui.LoginActivity
 import com.example.beritaapp.ui.MainActivity
@@ -26,7 +27,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
         if(auth.currentUser == null){
            intent()
         }
-        btnLogout.setOnClickListener {
+        icLogout.setOnClickListener {
             auth.signOut()
             Toast.makeText(context, "successfully logout", Toast.LENGTH_LONG).show()
             intent()
@@ -37,6 +38,12 @@ class UserFragment : Fragment(R.layout.fragment_user) {
         super.onStart()
         val user = auth.currentUser
         tvUsername.text = user?.displayName
+        context?.let {
+            Glide.with(it)
+                .load(user?.photoUrl)
+                .into(imgAccount)
+        }
+        tvEmail.text = user?.email
     }
 
     fun intent(){
