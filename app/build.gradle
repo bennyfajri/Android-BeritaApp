@@ -92,6 +92,10 @@ dependencies {
     //carousel view
     implementation 'com.synnapps:carouselview:0.1.5'
 
+    // Crop image
+    implementation "androidx.activity:activity-ktx:1.2.0-alpha06"
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+
 
 
 
