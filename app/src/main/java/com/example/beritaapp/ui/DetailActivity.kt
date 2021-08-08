@@ -13,6 +13,7 @@ import com.example.beritaapp.R
 import com.example.beritaapp.models.Article
 import com.example.beritaapp.models.Source
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
@@ -30,6 +31,7 @@ class DetailActivity : AppCompatActivity() {
     var id: Int = 0
     var isSaved = false
     lateinit var viewModel: ActivityViewModel
+    lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +41,11 @@ class DetailActivity : AppCompatActivity() {
         getIntentValue()
         setViewValue()
         bookmarked()
+        auth = FirebaseAuth.getInstance()
 
+        if(auth.currentUser == null){
+            fab.isClickable = false
+        }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = ""
 

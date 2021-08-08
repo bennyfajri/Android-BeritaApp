@@ -36,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         btnRegister.setOnClickListener {
             registerUser()
-            showBottonSheet()
+//            showBottonSheet()
         }
         icBack.setOnClickListener {
             finish()
@@ -71,11 +71,13 @@ class RegisterActivity : AppCompatActivity() {
         val credentials = GoogleAuthProvider.getCredential(account.idToken, null)
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                auth.signInWithCredential(credentials).await()
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(this@RegisterActivity, "Successfully sign in", Toast.LENGTH_LONG)
-                        .show()
-                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                val register = auth.signInWithCredential(credentials)
+                if(register.isSuccessful){
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@RegisterActivity, "Successfully sign in", Toast.LENGTH_LONG)
+                            .show()
+                        startActivity(Intent(applicationContext, EditUser::class.java))
+                    }
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
@@ -88,12 +90,6 @@ class RegisterActivity : AppCompatActivity() {
     private fun registerUser() {
         val email = etEmailRegister.text.toString()
         val password = etPasswordRegister.text.toString()
-//        val random = (0..10000).random()
-//        val username = "User$random"
-
-//        val profileUpdates = UserProfileChangeRequest.Builder()
-//            .setDisplayName(username)
-//            .build()
         if (email.isNotEmpty() && password.isNotEmpty()) {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
