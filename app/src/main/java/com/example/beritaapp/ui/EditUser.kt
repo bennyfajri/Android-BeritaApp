@@ -133,6 +133,7 @@ class EditUser : AppCompatActivity() {
                     }
                 }
                 if(i.hasExtra("edit")){
+                    startActivity(Intent(this@EditUser, MainActivity::class.java))
                     finish()
                 }else{
                     startActivity(Intent(this@EditUser, LoginActivity::class.java))

@@ -57,6 +57,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
             intent.putExtra("name", auth.currentUser?.displayName)
             startActivity(intent)
         }
+        setProfile()
 
     }
 
@@ -66,17 +67,18 @@ class UserFragment : Fragment(R.layout.fragment_user) {
         intent()
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         setProfile()
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
         setProfile()
     }
 
     private fun setProfile() {
+        auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         tvUsername.text = user?.displayName
         context?.let {
