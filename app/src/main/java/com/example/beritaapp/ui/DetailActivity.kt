@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -37,15 +38,17 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
+        auth = FirebaseAuth.getInstance()
+
+        if(auth.currentUser == null){
+            fab.visibility = View.GONE
+        }
+
         i = intent
         getIntentValue()
         setViewValue()
         bookmarked()
-        auth = FirebaseAuth.getInstance()
 
-        if(auth.currentUser == null){
-            fab.isClickable = false
-        }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = ""
 

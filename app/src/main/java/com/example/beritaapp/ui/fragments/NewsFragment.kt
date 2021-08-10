@@ -96,6 +96,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
 
 
     private fun showCardView(category: String) {
+        viewModel.getBreakingNews("id", category)
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
             when(response){
                 is Resource.Success -> {
@@ -120,11 +121,13 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
                 }
             }
         })
-        viewModel.getBreakingNews("id", category)
+
 
     }
 
     private fun clearData(category: String) {
+        newsAdapter.notifyDataSetChanged()
+        viewModel.getBreakingNews("i", category)
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
             when(response){
                 is Resource.Success -> {
@@ -149,14 +152,12 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
                 }
             }
         })
-        viewModel.getBreakingNews("i", category)
-
     }
 
     override fun onResume() {
         super.onResume()
 //        setupRecyclerView()
-        showCardView("")
+//        showCardView("")
     }
 
     private fun hideProgressBar(){
@@ -205,11 +206,11 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
 
     private fun setupRecyclerView(){
         newsAdapter = NewsHorizontalAdapter(requireContext())
-        newsAdapter.notifyDataSetChanged()
         rvSearchNews?.apply {
             adapter = newsAdapter
+            setHasFixedSize(true)
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-            addOnScrollListener(this@NewsFragment.scrollListener)
+//            addOnScrollListener(this@NewsFragment.scrollListener)
         }
     }
 }
