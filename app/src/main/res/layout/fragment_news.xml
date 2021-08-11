@@ -145,7 +145,8 @@
                             android:layout_height="20dp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerInParent="true"
-                            android:src="@drawable/ic_forward" />
+                            android:src="@drawable/ic_forward"
+                            app:tint="@color/purple_500"/>
 
                     </RelativeLayout>
 

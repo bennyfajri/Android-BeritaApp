@@ -93,8 +93,9 @@ class RegisterActivity : AppCompatActivity() {
         if (email.isNotEmpty() && password.isNotEmpty()) {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val register = auth.createUserWithEmailAndPassword(email, password).await()
-
+                    auth.createUserWithEmailAndPassword(email, password).await()
+                    startActivity(Intent(this@RegisterActivity, EditUser::class.java))
+                    finish()
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(this@RegisterActivity, e.message, Toast.LENGTH_LONG).show()
@@ -115,6 +116,7 @@ class RegisterActivity : AppCompatActivity() {
             btnSubmit.setOnClickListener {
                 val profileUpdates = UserProfileChangeRequest.Builder()
                     .setDisplayName(nama.text.toString())
+
                     .build()
 
                 if (nama != null) {
