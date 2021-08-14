@@ -9,7 +9,8 @@
     android:padding="8dp"
     android:elevation="8dp"
     app:cardCornerRadius="8dp"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    android:id="@+id/cvNews">
 
     <RelativeLayout
         android:layout_width="match_parent"
