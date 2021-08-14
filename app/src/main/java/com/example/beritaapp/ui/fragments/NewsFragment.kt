@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,8 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beritaapp.R
 import com.example.beritaapp.adapters.CategoryAdapter
-import com.example.beritaapp.adapters.NewsHorizontalAdapter
-import com.example.beritaapp.adapters.Newsadapter
+import com.example.beritaapp.adapters.NewsAdapter2
 import com.example.beritaapp.models.Category
 import com.example.beritaapp.models.CategoryData
 import com.example.beritaapp.ui.CategoryActivity
@@ -22,15 +20,13 @@ import com.example.beritaapp.ui.MainActivity
 import com.example.beritaapp.ui.NewsViewModel
 import com.example.beritaapp.ui.SearchActivity
 import com.example.beritaapp.util.Constants.Companion.QUERY_PAGE_SIZE
-import com.example.beritaapp.util.Resource
-import com.synnapps.carouselview.ImageListener
 import kotlinx.android.synthetic.main.fragment_news.*
 
 
 class NewsFragment : Fragment(R.layout.fragment_news) {
 
     lateinit var viewModel: NewsViewModel
-    lateinit var newsAdapter: NewsHorizontalAdapter
+    lateinit var newsAdapter: NewsAdapter2
     private var list: ArrayList<Category> = arrayListOf()
 
 
@@ -40,7 +36,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).viewModel
         setupRecyclerView()
-        showCardView("")
+        showCardView("business")
 
 
         slNews.setOnRefreshListener {
@@ -60,23 +56,22 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         list.addAll(CategoryData.listData)
         showCategory()
         radioBisnis.setOnClickListener {
-//            clearData("")
-//            showCardView("business")
+            showCardView("business")
         }
         radioHiburan.setOnClickListener {
-//            showCardView("entertaintment")
+            showCardView("entertainment")
         }
         radioKesehatan.setOnClickListener {
-//            showCardView("health")
+            showCardView("health")
         }
         radioOlahraga.setOnClickListener {
-//            showCardView("sport")
+            showCardView("sport")
         }
         radioSains.setOnClickListener {
-//            showCardView("science")
+            showCardView("science")
         }
         radioTekno.setOnClickListener {
-//            showCardView("technology")
+            showCardView("technology")
         }
         icMore.setOnClickListener {
             val intent = Intent(context, CategoryActivity::class.java)
@@ -96,62 +91,14 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
 
 
     private fun showCardView(category: String) {
-        viewModel.getBreakingNews("id", category)
+        viewModel.getBreakingNews2("id", category)
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
-            when(response){
-                is Resource.Success -> {
-                    hideProgressBar()
-                    response.data?.let { newsResponse ->
-                        newsAdapter.differ.submitList(newsResponse.articles.toList())
-                        val totalPages = newsResponse.totalResults / QUERY_PAGE_SIZE + 2
-                        isLastPage = viewModel.breakingNewsPage == totalPages
-                        if(isLastPage){
-                            rvSearchNews.setPadding(0,0,0,0)
-                        }
-                    }
-                }
-                is Resource.Error -> {
-                    hideProgressBar()
-                    response.message?.let{ message ->
-                        Toast.makeText(context, "An error occured: $message", Toast.LENGTH_LONG).show()
-                    }
-                }
-                is Resource.Loading -> {
-                    showProgressBar()
-                }
+            if(response.isSuccessful){
+                response.body()?.let { newsAdapter.setData(it.articles) }
             }
         })
 
 
-    }
-
-    private fun clearData(category: String) {
-        newsAdapter.notifyDataSetChanged()
-        viewModel.getBreakingNews("i", category)
-        viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
-            when(response){
-                is Resource.Success -> {
-                    hideProgressBar()
-                    response.data?.let { newsResponse ->
-                        newsAdapter.differ.submitList(null)
-                        val totalPages = newsResponse.totalResults / QUERY_PAGE_SIZE + 2
-                        isLastPage = viewModel.breakingNewsPage == totalPages
-                        if(isLastPage){
-                            rvSearchNews.setPadding(0,0,0,0)
-                        }
-                    }
-                }
-                is Resource.Error -> {
-                    hideProgressBar()
-                    response.message?.let{ message ->
-                        Toast.makeText(context, "An error occured: $message", Toast.LENGTH_LONG).show()
-                    }
-                }
-                is Resource.Loading -> {
-                    showProgressBar()
-                }
-            }
-        })
     }
 
     override fun onResume() {
@@ -197,7 +144,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
             val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning
                     && isTotalMoreThanVisible && isScrolling
             if(shouldPaginate){
-                viewModel.getBreakingNews("id", "")
+                viewModel.getBreakingNews2("id", "")
                 isScrolling = false
 
             }
@@ -205,12 +152,12 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
     }
 
     private fun setupRecyclerView(){
-        newsAdapter = NewsHorizontalAdapter(requireContext())
+        newsAdapter = NewsAdapter2()
         rvSearchNews?.apply {
             adapter = newsAdapter
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-//            addOnScrollListener(this@NewsFragment.scrollListener)
+            addOnScrollListener(this@NewsFragment.scrollListener)
         }
     }
 }
