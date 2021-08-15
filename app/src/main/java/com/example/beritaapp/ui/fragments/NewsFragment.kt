@@ -97,8 +97,6 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
                 response.body()?.let { newsAdapter.setData(it.articles) }
             }
         })
-
-
     }
 
     override fun onResume() {

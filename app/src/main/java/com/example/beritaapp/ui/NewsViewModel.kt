@@ -13,7 +13,6 @@ import com.example.beritaapp.NewsApplication
 import com.example.beritaapp.models.Article
 import com.example.beritaapp.models.NewsResponse
 import com.example.beritaapp.repository.NewsRepository
-import com.example.beritaapp.util.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.io.IOException
