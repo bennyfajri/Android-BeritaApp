@@ -96,7 +96,7 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.2.0-alpha06"
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
 
-
-
+    // Auto Image Slider
+    implementation 'com.github.smarteist:autoimageslider:1.4.0'
 
 }
