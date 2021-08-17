@@ -14,7 +14,8 @@ import com.example.beritaapp.models.Article
 import com.example.beritaapp.ui.DetailActivity
 import kotlinx.android.synthetic.main.item_article.view.*
 
-class Newsadapter(context: Context) : RecyclerView.Adapter<Newsadapter.ArticleViewHolder>() {
+class
+Newsadapter(context: Context) : RecyclerView.Adapter<Newsadapter.ArticleViewHolder>() {
 
     inner class ArticleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
