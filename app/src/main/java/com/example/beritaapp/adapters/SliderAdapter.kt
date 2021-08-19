@@ -11,7 +11,6 @@ import com.example.beritaapp.models.SliderItem
 import com.smarteist.autoimageslider.SliderViewAdapter
 
 
-
 class SliderAdapter(val context: Context, val sliderData: ArrayList<SliderItem>) : SliderViewAdapter<SliderAdapter.SliderAdapterViewHolder>() {
 
     inner class SliderAdapterViewHolder(itemView: View?) : SliderViewAdapter.ViewHolder(itemView) {
@@ -23,7 +22,9 @@ class SliderAdapter(val context: Context, val sliderData: ArrayList<SliderItem>)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?): SliderAdapterViewHolder {
-        TODO("Not yet implemented")
+        val inflate: View =
+            LayoutInflater.from(parent?.getContext()).inflate(R.layout.slider_layout, null)
+        return SliderAdapterViewHolder(inflate)
     }
 
     override fun onBindViewHolder(viewHolder: SliderAdapterViewHolder?, position: Int) {
