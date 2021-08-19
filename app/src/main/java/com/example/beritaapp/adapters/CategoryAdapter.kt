@@ -40,7 +40,7 @@ val arrayList: ArrayList<Category>
 
         Glide.with(holder.itemView.context)
             .load(category.icon)
-            .apply(RequestOptions().override(45,30))
+            .circleCrop()
             .into(holder.img)
 
         holder.tvName.text = category.nama
