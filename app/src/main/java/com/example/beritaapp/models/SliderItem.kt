@@ -1,6 +1,6 @@
 package com.example.beritaapp.models
 
 data class SliderItem(
-    val desc: String,
-    val img: Int,
+    var desc: String = "",
+    var img: Int = 0,
 )
