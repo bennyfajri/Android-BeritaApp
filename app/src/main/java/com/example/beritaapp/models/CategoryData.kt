@@ -32,6 +32,18 @@ object CategoryData {
         R.color.abu
     )
 
+    private val image = intArrayOf(
+        R.drawable.banner1,
+        R.drawable.banner2,
+        R.drawable.banner3
+    )
+
+    private val desc = arrayOf(
+        "https://kitabisa.com/explore/all",
+        "https://kitabisa.com/explore/zakat",
+        "https://galangdana.kitabisa.com/"
+    )
+
     val listData: ArrayList<Category>
     get() {
         val list = arrayListOf<Category>()
@@ -46,9 +58,17 @@ object CategoryData {
         return list
     }
 
-    val adsImage = intArrayOf(
-        R.drawable.banner2,R.drawable.banner1
-    )
+    val listSlider : ArrayList<SliderItem>
+    get(){
+        val list = arrayListOf<SliderItem>()
+        for(position in image.indices){
+            val item = SliderItem()
+            item.img = image[position]
+            item.desc = desc[position]
+            list.add(item)
+        }
+        return list
+    }
 
 
 }

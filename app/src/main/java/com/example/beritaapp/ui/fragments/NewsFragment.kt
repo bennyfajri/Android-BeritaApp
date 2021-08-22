@@ -13,13 +13,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.beritaapp.R
 import com.example.beritaapp.adapters.CategoryAdapter
 import com.example.beritaapp.adapters.NewsAdapter2
+import com.example.beritaapp.adapters.SliderAdapter
 import com.example.beritaapp.models.Category
 import com.example.beritaapp.models.CategoryData
+import com.example.beritaapp.models.CategoryData.listSlider
 import com.example.beritaapp.ui.CategoryActivity
 import com.example.beritaapp.ui.MainActivity
 import com.example.beritaapp.ui.NewsViewModel
 import com.example.beritaapp.ui.SearchActivity
 import com.example.beritaapp.util.Constants.Companion.QUERY_PAGE_SIZE
+import com.smarteist.autoimageslider.SliderView
 import kotlinx.android.synthetic.main.fragment_news.*
 
 
@@ -38,6 +41,12 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         setupRecyclerView()
         showCardView("business")
 
+        val sliderAdapter = SliderAdapter(context!!, listSlider)
+        slider.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
+        slider.setSliderAdapter(sliderAdapter)
+        slider.scrollTimeInSec = 5
+        slider.isAutoCycle = true
+        slider.startAutoCycle()
 
         slNews.setOnRefreshListener {
             Handler().postDelayed(Runnable {

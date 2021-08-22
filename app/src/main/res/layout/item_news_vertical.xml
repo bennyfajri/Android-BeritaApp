@@ -42,7 +42,8 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                tools:text="Title" />
+                tools:text="Title"
+                android:fontFamily="@font/roboto_regular"/>
 
             <TextView
                 android:id="@+id/tvSourceH"
@@ -52,7 +53,8 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="8dp"
                 tools:text="source"
-                android:layout_below="@id/tvTitleH"/>
+                android:layout_below="@id/tvTitleH"
+                android:fontFamily="@font/roboto_regular"/>
         </RelativeLayout>
 
     </RelativeLayout>
